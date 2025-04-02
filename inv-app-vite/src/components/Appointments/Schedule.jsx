@@ -8,16 +8,10 @@ function Schedule() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // simulacion cita
     const nuevaCita = { fecha, hora, motivo };
-
-    // Guardar en localStorage
     const citasGuardadas = JSON.parse(localStorage.getItem('citas')) || [];
     citasGuardadas.push(nuevaCita);
     localStorage.setItem('citas', JSON.stringify(citasGuardadas));
-
-    // Limpia form.
     setFecha('');
     setHora('');
     setMotivo('');
@@ -25,31 +19,13 @@ function Schedule() {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Agendar Cita</h2>
+    <div className="container mt-5 mb-5">
+      <h2 className="mb-4">Agendar Cita</h2>
       {mensaje && <div className="alert alert-success">{mensaje}</div>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="date"
-          className="form-control mb-2"
-          value={fecha}
-          onChange={(e) => setFecha(e.target.value)}
-          required
-        />
-        <input
-          type="time"
-          className="form-control mb-2"
-          value={hora}
-          onChange={(e) => setHora(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Motivo de la cita"
-          className="form-control mb-2"
-          value={motivo}
-          onChange={(e) => setMotivo(e.target.value)}
-          required
-        ></textarea>
+      <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+        <input type="date" className="form-control" value={fecha} onChange={(e) => setFecha(e.target.value)} required />
+        <input type="time" className="form-control" value={hora} onChange={(e) => setHora(e.target.value)} required />
+        <textarea placeholder="Motivo de la cita" className="form-control" value={motivo} onChange={(e) => setMotivo(e.target.value)} required></textarea>
         <button className="btn btn-primary">Agendar</button>
       </form>
     </div>
