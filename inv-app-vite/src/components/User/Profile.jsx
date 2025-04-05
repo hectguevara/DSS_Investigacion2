@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  if (!user) return <p>No has iniciado sesión.</p>;
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user) return null; 
 
   return (
     <div className="container mt-5 mb-5">
