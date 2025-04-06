@@ -26,14 +26,14 @@ function Schedule() {
     // Enviar correo automáticamente
     try {
       await axios.post('http://localhost:3001/send', {
-        to: user.email,
-        subject: 'Confirmación de cita',
-        message: `Hola ${user.name},\n\nTu cita ha sido agendada para el ${fecha} a las ${hora}.\nMotivo: ${motivo}\n\nGracias por usar HealthApp.`
+        to: user.email || 'test@mailtrap.io', // si el usuario no tiene correo real
+        subject: 'Cita confirmada',
+        message: `Hola ${user.name}, tu cita fue agendada para el ${fecha} a las ${hora}.`
       });
-      console.log('✅ Correo enviado al paciente');
+      console.log('✅ Correo enviado por cita');
     } catch (error) {
-      console.error('❌ Error al enviar correo:', error.message);
-    }
+      console.error('❌ Error al enviar correo por cita:', error.message);
+    }    
   };
 
   return (

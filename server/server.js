@@ -9,32 +9,35 @@ app.use(express.json());
 app.post('/send', async (req, res) => {
   const { to, subject, message } = req.body;
 
-  // Configurar transporte SMTP con Gmail
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // SSL
-    auth: {
-      user: 'smtpds2025@gmail.com',          // ✅ tu correo Gmail
-      pass: 'ohtuoxihknnvhhkq'      // ⚠️ tu App Password, no la contraseña normal
-    }
-  });
+  console.log('📩 Datos recibidos:', { to, subject, message });
 
   try {
-    await transporter.sendMail({
-      from: 'smtpds2025@gmail.com',
+    const transporter = nodemailer.createTransport({
+      host: 'sandbox.smtp.mailtrap.io',
+      port: 2525,
+      secure: false,
+      auth: {
+        user: '6beac855ba8924',
+        pass: '6fd79bada4e7d3'
+      }
+    });
+
+    const info = await transporter.sendMail({
+      from: '"HealthApp" <smtpds2025@gmail.com>',
       to,
       subject,
       text: message
     });
 
-    res.status(200).json({ message: 'Correo enviado correctamente' });
+    console.log('✅ Correo enviado:', info.response);
+    res.status(200).json({ success: true, message: 'Correo enviado correctamente' });
+
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Error al enviar el correo', error: err });
+    console.error('❌ Error al enviar:', err);
+    res.status(500).json({ success: false, message: 'Error interno', error: err.message });
   }
 });
 
 app.listen(3001, () => {
-  console.log('✅ Servidor de correo activo en http://localhost:3001');
+  console.log('🚀 Servidor escuchando en http://localhost:3001');
 });
