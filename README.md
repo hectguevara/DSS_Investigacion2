@@ -29,6 +29,7 @@ Abre el archivo en Postman para hacer login, registrar usuarios, consultar perfi
 ### Registro de usuario
 - Ruta: `/register`
 - Guarda el usuario directamente en Directus.
+- El server tarda en levantarse ya que tenemos la versión gratuita y cuando está inactivo se apaga
 - Asigna el rol correspondiente (Paciente, Médico o Administrador).
 
 ### Inicio de sesión
