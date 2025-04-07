@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "fc8eb9e3-6a6d-4e58-a920-69c58eeec482",
+		"name": "UDB MEDICINA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42567213",
+		"_collection_link": "https://udb444.postman.co/workspace/UDB-Workspace~452fc7bf-433f-4d36-89be-21727b2ab874/collection/43804755-fc8eb9e3-6a6d-4e58-a920-69c58eeec482?action=share&source=collection_link&creator=42567213"
+	},
+	"item": [
+		{
+			"name": "Lectura",
+			"item": [
+				{
+					"name": "Get roles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}roles?fields=id,name",
+							"host": [
+								"{{base_url}}roles"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id,name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get patients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}users?filter[role][name][_eq]=paciente",
+							"host": [
+								"{{base_url}}users"
+							],
+							"query": [
+								{
+									"key": "filter[role][name][_eq]",
+									"value": "paciente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get doctors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}users?filter[role][name][_eq]=admin",
+							"host": [
+								"{{base_url}}users"
+							],
+							"query": [
+								{
+									"key": "filter[role][name][_eq]",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get dates",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}items/date",
+							"host": [
+								"{{base_url}}items"
+							],
+							"path": [
+								"date"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get tratments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}items/treatment?fields=*,FkTreatmentToTreatmentMedication.medicationID.name",
+							"host": [
+								"{{base_url}}items"
+							],
+							"path": [
+								"treatment"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "*,FkTreatmentToTreatmentMedication.medicationID.name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get medications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "w010NMMU1_nzsybV8p-Yyih1t9LAzM9c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}items/medication",
+							"host": [
+								"{{base_url}}items"
+							],
+							"path": [
+								"medication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "w010NMMU1_nzsybV8p-Yyih1t9LAzM9c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"douglasmejiarivas@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"role\": \"91fbcdb8-adec-4c56-8add-84ad00e88720\", \r\n  \"status\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://directus-backend-y9fe.onrender.com/auth/login",
+							"protocol": "https",
+							"host": [
+								"directus-backend-y9fe",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manipulacion",
+			"item": [
+				{
+					"name": "Crear",
+					"item": [
+						{
+							"name": "Create user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"another_1@example.com\",\n\t\"password\": \"password123456\",\n\t\"role\": \"63b576c9-0e5a-4099-b7c3-bba50cb63b64\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users",
+									"host": [
+										"{{base_url}}users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \t\"email\": \"another@example.com\",\n\t\"password\": \"password123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}auth/login",
+									"host": [
+										"{{base_url}}auth"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create date",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"appointmentDate\":\"2025-04-06T21:32:43.980Z\",\n    // MANDAR CUALQUIER FECHA, PERO CON HORA CORRECTA\n    \"appointmentTime\":\"2025-04-06T21:32:43.980Z\",\n    // VALOR POR DEFECTO\n    \"status\":\"scheduled\",\n    \"motive\":\"MOTIVO\",\n    // ID PACIENTE\n    \"patientID\": \"3ef975ba-6b06-4d05-81b0-96217387ab27\",\n    // ID DOCTOR\n    \"medicID\": \"3ef975ba-6b06-4d05-81b0-96217387ab27\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}items/date",
+									"host": [
+										"{{base_url}}items"
+									],
+									"path": [
+										"date"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create tratment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"startDate\": \"2025-04-06T21:32:43.980Z\",\n    \"endDate\": \"2025-04-10T21:32:43.980Z\",\n    \"description\": \"TRATAMIENTO\",\n    // ID PACIENTE\n    \"patientID\": \"3ef975ba-6b06-4d05-81b0-96217387ab27\",\n    // ID DOCTOR\n    \"medicID\": \"3ef975ba-6b06-4d05-81b0-96217387ab27\",\n    \"FkTreatmentToTreatmentMedication\": {\n        \"create\": [\n            {\n                \"medicationID\": \"03aa0895-c7af-4c21-9afa-29892afeefdd\"\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}items/treatment",
+									"host": [
+										"{{base_url}}items"
+									],
+									"path": [
+										"treatment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create medication",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"indications\":\"Tomar despues de comer\",\n    \"dose\":\"2 tabletas\",\n    \"frecuency\":\"Cada 8 horas\",\n    \"name\":\"Acetaminophen\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}items/medication",
+									"host": [
+										"{{base_url}}items"
+									],
+									"path": [
+										"medication"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Eliminar",
+					"item": [
+						{
+							"name": "Delete date",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}items/date/63b692dc-a3a7-4753-b579-1a1a56f68db0",
+									"host": [
+										"{{base_url}}items"
+									],
+									"path": [
+										"date",
+										"63b692dc-a3a7-4753-b579-1a1a56f68db0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete treatment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}items/treatment/63b692dc-a3a7-4753-b579-1a1a56f68db0",
+									"host": [
+										"{{base_url}}items"
+									],
+									"path": [
+										"treatment",
+										"63b692dc-a3a7-4753-b579-1a1a56f68db0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete medication",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}items/medication/63b692dc-a3a7-4753-b579-1a1a56f68db0",
+									"host": [
+										"{{base_url}}items"
+									],
+									"path": [
+										"medication",
+										"63b692dc-a3a7-4753-b579-1a1a56f68db0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
